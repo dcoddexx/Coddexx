@@ -1,0 +1,261 @@
+@import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap");
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* 
+ * 1. Define your Figma tokens and themes 
+ */
+:root {
+  /* Color primitives */
+  --color-neutral-0: #ffffff;
+  --color-neutral-25: #f9f9f7;
+  --color-neutral-50: #f5f5f3;
+  --color-neutral-100: #f0f0ed;
+  --color-neutral-150: #e8e8e5;
+  --color-neutral-200: #ddddda;
+  --color-neutral-400: #989a95;
+  --color-neutral-500: #969696;
+  --color-neutral-600: #666864;
+  --color-neutral-650: #656565;
+  --color-neutral-800: #2a2a2a;
+  --color-neutral-850: #202020;
+  --color-neutral-875: #1e1e1e;
+  --color-neutral-900: #181818;
+  --color-neutral-925: #171817;
+  --color-neutral-950: #111111;
+  --color-neutral-1000: #0a0a0a;
+  --color-emerald-400: #00f5d4;
+  --color-emerald-700: #0f766e;
+  --color-emerald-950: #062e2a;
+  --color-purple-400: #ab79d6;
+
+  /* Typography */
+  --font-family-sans: "Plus Jakarta Sans", sans-serif;
+  --font-family-mono: "JetBrains Mono", monospace;
+  --font-size-2xs: 8px;
+  --font-size-xs: 9px;
+  --font-size-sm: 10px;
+  --font-size-md: 11px;
+  --font-size-lg: 12px;
+  --font-size-xl: 13px;
+  --font-size-2xl: 14px;
+  --font-size-3xl: 15px;
+  --font-size-4xl: 18px;
+  --font-size-5xl: 19px;
+  --font-size-6xl: 20px;
+  --font-size-7xl: 22px;
+  --font-size-8xl: 24px;
+  --font-size-9xl: 27px;
+  --font-size-10xl: 29px;
+  --font-size-display-sm: clamp(40px, 4vw, 58px);
+  --font-size-display-md: clamp(48px, 5vw, 70px);
+  --font-size-display-lg: clamp(56px, 5vw, 78px);
+
+  --line-height-tight: 1.01;
+  --line-height-snug: 1.1;
+  --line-height-heading: 1.45;
+  --line-height-body: 1.7;
+  --line-height-relaxed: 1.8;
+
+  --letter-spacing-display: -0.062em;
+  --letter-spacing-heading: -0.055em;
+  --letter-spacing-title: -0.03em;
+  --letter-spacing-body: -0.02em;
+  --letter-spacing-label: 0.08em;
+  --letter-spacing-caps: 0.1em;
+  --letter-spacing-wide: 0.12em;
+  --letter-spacing-wider: 0.14em;
+
+  /* Spacing */
+  --space-0: 0;
+  --space-0-75: 3px;
+  --space-1: 4px;
+  --space-1-25: 5px;
+  --space-1-5: 6px;
+  --space-1-75: 7px;
+  --space-2: 8px;
+  --space-2-25: 9px;
+  --space-2-5: 10px;
+  --space-3: 12px;
+  --space-3-5: 14px;
+  --space-4: 16px;
+  --space-4-5: 18px;
+  --space-5: 20px;
+  --space-5-5: 22px;
+  --space-6: 24px;
+  --space-6-25: 25px;
+  --space-7: 28px;
+  --space-7-5: 30px;
+  --space-8: 32px;
+  --space-9: 36px;
+  --space-9-5: 38px;
+  --space-10: 40px;
+  --space-11: 44px;
+  --space-12: 48px;
+  --space-14: 56px;
+  --space-15: 60px;
+  --space-16: 64px;
+  --space-18: 72px;
+  --space-20: 80px;
+  --space-22: 88px;
+  --space-24: 96px;
+  --space-28: 112px;
+  --space-30: 120px;
+  --space-32: 128px;
+  --space-section: 130px;
+
+  /* Dark theme semantic colors (default) */
+  --bg: var(--color-neutral-1000);
+  --surface: var(--color-neutral-950); /*#111111*/
+  --card: var(--color-neutral-900); /*#181818*/
+  --card-strong: var(--color-neutral-875);
+  --line: var(--color-neutral-800); /*#2a2a2a*/
+  --line-soft: var(--color-neutral-850);
+  --text: var(--color-neutral-50); /*#f5f5f3*/
+  --muted: var(--color-neutral-500); /*#969696*/
+  --muted-2: var(--color-neutral-650); /*#656565*/
+  --accent: var(--color-emerald-400); /*#00f5d4*/
+  --accent-ink: var(--color-emerald-950);
+  --accent-soft: rgb(0 245 212 / 10%);
+  --syntax-property: var(--color-purple-400);
+  --shadow: 0 32px 80px rgb(0 0 0 / 35%);
+  --shadow-accent: 0 12px 30px var(--accent-soft);
+}
+
+[data-theme="light"] {
+  --bg: var(--color-neutral-25);
+  --surface: var(--color-neutral-100);
+  --card: var(--color-neutral-0);
+  --card-strong: var(--color-neutral-0);
+  --line: var(--color-neutral-200);
+  --line-soft: var(--color-neutral-150);
+  --text: var(--color-neutral-925);
+  --muted: var(--color-neutral-600);
+  --muted-2: var(--color-neutral-400);
+  --accent: var(--color-emerald-700);
+  --accent-ink: #f1fffc;
+  --accent-soft: rgb(15 118 110 / 10%);
+  --shadow: 0 28px 70px rgb(28 34 32 / 8%);
+  --shadow-accent: 0 12px 30px var(--accent-soft);
+}
+
+/* 
+ * 2. Tell Tailwind v4 to map these to standard utilities 
+ */
+@theme {
+  /* Semantic Colors -> bg-surface, text-muted, border-line, text-accent */
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-card: var(--card);
+  --color-card-strong: var(--card-strong);
+  --color-line: var(--line);
+  --color-line-soft: var(--line-soft);
+  --color-text: var(--text);
+  --color-muted: var(--muted);
+  --color-muted-2: var(--muted-2);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-soft: var(--accent-soft);
+  --color-syntax-property: var(--syntax-property);
+
+  /* Typography -> font-sans, text-display-md, tracking-wide, leading-relaxed */
+  --font-family-sans: "Plus Jakarta Sans", sans-serif;
+  --font-mono: var(--font-family-mono);
+
+  --text-2xs: var(--font-size-2xs);
+  --text-xs: var(--font-size-xs);
+  --text-sm: var(--font-size-sm);
+  --text-md: var(--font-size-md);
+  --text-lg: var(--font-size-lg);
+  --text-xl: var(--font-size-xl);
+  --text-2xl: var(--font-size-2xl);
+  --text-3xl: var(--font-size-3xl);
+  --text-4xl: var(--font-size-4xl);
+  --text-5xl: var(--font-size-5xl);
+  --text-6xl: var(--font-size-6xl);
+  --text-7xl: var(--font-size-7xl);
+  --text-8xl: var(--font-size-8xl);
+  --text-9xl: var(--font-size-9xl);
+  --text-10xl: var(--font-size-10xl);
+  --text-display-sm: var(--font-size-display-sm);
+  --text-display-md: var(--font-size-display-md);
+  --text-display-lg: var(--font-size-display-lg);
+
+  --leading-tight: var(--line-height-tight);
+  --leading-snug: var(--line-height-snug);
+  --leading-heading: var(--line-height-heading);
+  --leading-body: var(--line-height-body);
+  --leading-relaxed: var(--line-height-relaxed);
+
+  --tracking-display: var(--letter-spacing-display);
+  --tracking-heading: var(--letter-spacing-heading);
+  --tracking-title: var(--letter-spacing-title);
+  --tracking-body: var(--letter-spacing-body);
+  --tracking-label: var(--letter-spacing-label);
+  --tracking-caps: var(--letter-spacing-caps);
+  --tracking-wide: var(--letter-spacing-wide);
+  --tracking-wider: var(--letter-spacing-wider);
+
+  /* Spacing -> p-1.5, mt-section. 
+   * Note the backslash to escape the dot for Tailwind class names (e.g. 1.5) */
+  --spacing-0\.75: var(--space-0-75);
+  --spacing-1: var(--space-1);
+  --spacing-1\.25: var(--space-1-25);
+  --spacing-1\.5: var(--space-1-5);
+  --spacing-1\.75: var(--space-1-75);
+  --spacing-2: var(--space-2);
+  --spacing-2\.25: var(--space-2-25);
+  --spacing-2\.5: var(--space-2-5);
+  --spacing-3: var(--space-3);
+  --spacing-3\.5: var(--space-3-5);
+  --spacing-4: var(--space-4);
+  --spacing-4\.5: var(--space-4-5);
+  --spacing-5: var(--space-5);
+  --spacing-5\.5: var(--space-5-5);
+  --spacing-6: var(--space-6);
+  --spacing-6\.25: var(--space-6-25);
+  --spacing-7: var(--space-7);
+  --spacing-7\.5: var(--space-7-5);
+  --spacing-8: var(--space-8);
+  --spacing-9: var(--space-9);
+  --spacing-9\.5: var(--space-9-5);
+  --spacing-10: var(--space-10);
+  --spacing-11: var(--space-11);
+  --spacing-12: var(--space-12);
+  --spacing-14: var(--space-14);
+  --spacing-15: var(--space-15);
+  --spacing-16: var(--space-16);
+  --spacing-18: var(--space-18);
+  --spacing-20: var(--space-20);
+  --spacing-22: var(--space-22);
+  --spacing-24: var(--space-24);
+  --spacing-28: var(--space-28);
+  --spacing-30: var(--space-30);
+  --spacing-32: var(--space-32);
+  --spacing-section: var(--space-section);
+  --spacing-nav-desktop: 84px;
+  --spacing-nav-mobile: 70px;
+
+  /* Layout & Shapes -> max-w-layout, rounded-pill */
+  --container-layout: 1320px;
+  --radius-xs: 1px;
+  --radius-sm: 2px;
+  --radius-md: 3px;
+  --radius-lg: 4px;
+  --radius-xl: 9px;
+  --radius-pill: 999px;
+
+  /* Effects -> shadow-accent, blur-surface, duration-fast */
+  --shadow-DEFAULT: var(--shadow);
+  --shadow-accent: var(--shadow-accent);
+  --blur-surface: 18px;
+  --duration-fast: 200ms;
+  --duration-normal: 250ms;
+  --duration-slow: 300ms;
+  --ease-standard: ease;
+  --ease-step: steps(1);
+}
