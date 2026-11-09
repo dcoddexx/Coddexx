@@ -5,6 +5,9 @@ import { Projects } from "./pages/Projects";
 import { useState, useEffect } from "react";
 import Light from "../src/assets/light.svg";
 import Night from "../src/assets/night.svg";
+import { ProtectedRoute } from "./components/ProtectedRoute";
+import { Admin } from "./pages/Admin";
+import { Login } from "./pages/Login";
 
 function App() {
   const currentUserName = "Francis Omotayo";
@@ -58,6 +61,12 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/projects" element={<Projects />} />
+          <Route path="/login" element={<Login />} />
+
+          {/* Protected Admin Route */}
+          <Route element={<ProtectedRoute />}>
+            <Route path="/admin" element={<Admin />} />
+          </Route>
         </Routes>
       </div>
     </BrowserRouter>

@@ -1,7 +1,52 @@
 import { projectsObjects } from "../data/projects";
 import ProjectCard from "../components/ProjectCard";
+import { getProject } from "../service/projectService";
+import { useState, useEffect } from "react";
+import { type ProjectTypes } from "../types/projectTypes";
 
 export const Projects = () => {
+  // I NEED THREE STATE TO HANDLE UI FOR FETCHING DATA OVER NETWORK
+  const [projects, setProjects] = useState<ProjectTypes[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    async function fetchProject() {
+      try {
+        setLoading(true);
+        setError(null);
+
+        const data = await getProject();
+        setProjects(data);
+      } catch (error: any) {
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchProject();
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="w-full py-[90px] bg-bg px-[18px] flex justify-center items-center">
+        <p className="text-muted text-[18px] font-family-sans">
+          Loading projects...
+        </p>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="w-full py-[90px] bg-bg px-[18px] flex justify-center items-center">
+        <p className="text-accent text-[18px] font-family-sans">
+          Failed to fetch projects. {error}
+        </p>
+      </div>
+    );
+  }
+
   return (
     <div className="w-full py-[90px] bg-bg border-t-[0.5px] border-t border-line px-[18px]">
       <div className="flex gap-[10px]">
@@ -37,7 +82,7 @@ export const Projects = () => {
       </div>
 
       <div>
-        {projectsObjects.map((project) => (
+        {projects.map((project) => (
           <ProjectCard key={project.id} project={project} />
         ))}
       </div>
