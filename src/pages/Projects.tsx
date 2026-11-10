@@ -1,4 +1,3 @@
-import { projectsObjects } from "../data/projects";
 import ProjectCard from "../components/ProjectCard";
 import { getProject } from "../service/projectService";
 import { useState, useEffect } from "react";
